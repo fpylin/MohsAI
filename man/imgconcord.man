@@ -1,0 +1,43 @@
+NAME
+imgconcord.py - Command line tool for image segmentation accuracy evaluation using labelled groud truth and predicted masks
+
+SYNOPSIS
+imgconcord.py SourceImage SourceImageLabelledGroundTruth PredictedMask [BoundingBoxList] [Crit|0.95]
+
+DESCRIPTION
+Imgconcord.py is a command line tool for evaluating the accuracy of image segmentation using labelled ground truth and predicted masks. Given the input of a source image and its labelled ground truth, and a predicted mask, imgconcord.py calculates and outputs various metrics of segmentation accuracy, including true positives, false positives, true negatives, false negatives, accuracy, sensitivity, specificity, positive predictive value, negative predictive value, F1 score, and Jaccard score. 
+
+OPTIONS
+SourceImage
+       The path of the source image.
+
+SourceImageLabelledGroundTruth
+       The path of the ground truth labelled image of the source image.
+
+PredictedMask
+       The path of the predicted segmentation mask of the source image.
+
+BoundingBoxList (optional)
+       The path of the file containing bounding box coordinates for the source image in the format of "y0 x0 y1 x1", one line per bounding box. 
+
+Crit|0.95 (optional)
+       The criterion for accepting bounding boxes as valid, expressed as a proportion of non-zero pixels in the respective bounding box. The default value is 0.95.
+
+EXAMPLES
+Calculate two-class statistics based only on the source image and labelled ground truth:
+
+       imgconcord.py /path/to/source/image /path/to/labelled/groundtruth/image /path/to/predicted/mask
+
+Calculate two-class statistics after applying bounding box constraints and a custom criterion value of 0.9:
+
+       imgconcord.py /path/to/source/image /path/to/labelled/groundtruth/image /path/to/predicted/mask /path/to/bounding/boxes/file 0.9
+
+INSTALLATION
+Imgconcord.py requires OpenCV to be installed. 
+
+REQUIRED LIBRARY
+OpenCV
+
+SEE ALSO
+OpenCV official website: https://opencv.org/
+

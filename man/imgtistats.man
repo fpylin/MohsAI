@@ -1,0 +1,104 @@
+.TH IMGTISTATS.PL 1 "May 2023" "Version 1.0" "imgtistats.pl man page"
+
+.SH NAME
+imgtistats.pl \- A command line tool for calculating various evaluation metrics for image classification tasks
+
+.SH SYNOPSIS
+.B imgtistats.pl
+[\-h] [\-\-threshold=threshold] [\-\-divisions=ndiv]
+<fn_source_image> <fn_image_gndt_label> <fn_pred_score_txt>
+[<fn_image_bbox_thresh> [image_bbox_thresh]]
+
+.SH DESCRIPTION
+imgtistats.pl is a command-line tool used to calculate various evaluation metrics for image classification tasks. The tool takes in three mandatory input files and two optional arguments. The mandatory input files are the source image file, the ground truth image label file, and the predicted score text file. The optional arguments are the image bounding box threshold and the number of divisions.
+
+.SH OPTIONS
+This section provides an overview of all the available options and arguments that can be used with imgtistats.pl.
+
+.TP
+.B \-h
+Print a help message and exit.
+
+.TP
+.B \-\-threshold=threshold
+The threshold value for creating a binary mask. The default value is 0.8.
+
+.TP
+.B \-\-divisions=ndiv
+The number of divisions. The default value is 10.
+
+.TP
+.B fn_source_image
+The file path to the source image file (mandatory argument).
+
+.TP
+.B fn_image_gndt_label
+The file path to the ground truth image label file (mandatory argument).
+
+.TP
+.B fn_pred_score_txt
+The file path to the predicted score text file (mandatory argument).
+
+.TP
+.B fn_image_bbox_thresh
+The file path to the image bounding box threshold (optional argument).
+
+.TP
+.B image_bbox_thresh
+The maximum overlap allowed between the predicted bounding box and ground-truth bounding box. The default value is 0.8.
+
+.SH EXAMPLES
+This section provides various examples to help you understand how to use imgtistats.pl.
+
+.TP
+.B Example 1:
+Basic usage
+.BR "imgtistats.pl example_image.jpg example_image.gndt example_scores.txt"
+
+.TP
+.B Example 2:
+Using a custom threshold value
+.BR "imgtistats.pl --threshold=0.5 example_image.jpg example_image.gndt example_scores.txt"
+
+.TP
+.B Example 3:
+Calculating with a different number of divisions
+.BR "imgtistats.pl --divisions=20 example_image.jpg example_image.gndt example_scores.txt"
+
+.TP
+.B Example 4:
+Setting the maximum overlap between predicted bbox and ground-truth bbox
+.BR "imgtistats.pl example_image.jpg example_image.gndt example_scores.txt /path/to/image/bbox/threshold.txt 0.5"
+
+.SH INSTALLATION
+This section provides instructions on how to install and configure imgtistats.pl.
+
+.TP
+.B Prerequisites
+Make sure that your system meets the following prerequisites:
+.RS
+.IP \(bu 2
+Perl version 5 or later
+.IP \(bu 2
+The "Storable" module
+.IP \(bu 2
+The "threads" module
+.IP \(bu 2
+The "threads::shared" module
+.RE
+
+.TP
+.B Installation
+Download the imgtistats.pl file and save it to a directory of your choice. Make sure that the file has execute permissions.
+
+.SH REQUIRED LIBRARY
+The following external libraries are used with this script:
+
+.TP
+.B Storable
+For serialization and deserialization of Perl data structures
+
+.TP
+.B threads
+For parallel processing
+

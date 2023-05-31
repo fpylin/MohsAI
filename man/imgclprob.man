@@ -1,0 +1,89 @@
+NAME
+
+imgclprob.pl - A command line tool to classify images based on a given model and generate probability-based annotations on input image.
+
+SYNOPSIS
+
+imgclprob.pl [OPTIONS] fn_model fn_image [stride|0.5] [fn_output|/tmp/annot.jpg] [prob_crit|0.5]
+
+DESCRIPTION
+
+imgclprob.pl is a command line tool written in Perl that can be used to classify images based on a given model and generate probability-based annotations on the input image. It requires two mandatory arguments, fn_model and fn_image, which respectively represents a trained model file and an input image file. When executing the script, it will generate an intermediate cache file representing the probability distribution over image tiles. This intermediate cache file will be used to generate the output image by imgprob.pl, which is another script that provides a high-level command line interface for generating probability-based annotations on images.
+
+OPTIONS
+
+This script supports the following options:
+
+-m
+
+If this option is present, multiscale analysis will be performed. Otherwise, the -s option should be included to specify the scale at which to perform analysis.
+
+-c
+
+If this option is present, it will calibrate the model for different scales of the input image and use the optimal scale for classification.
+
+-s[Scale]
+
+If this option is present, it specifies the scale (in percent) at which to perform image analysis. The scale value must be a positive number between 0 and 100.
+
+stride
+
+This is the stride of image tile placement. It specifies the distance between overlapping image tiles as a fraction of the tile size. If this option is not present, the default value of 0.5 will be used.
+
+fn_output
+
+This is the output image file name. If this option is not present, the default file name '/tmp/annot.jpg' will be used.
+
+prob_crit
+
+This is a probability threshold that determines the minimum probability required for a tile to be considered active. If this option is not present, the default value of 0.5 will be used.
+
+EXAMPLES
+
+To classify an input image with a given model and generate probability-based annotations on the output image, use the following command:
+
+imgclprob.pl model.txt input_image.jpg
+
+To perform multiscale analysis on the input image, use the following command:
+
+imgclprob.pl -m model.txt input_image.jpg
+
+To perform image analysis at a specific scale, use the following command:
+
+imgclprob.pl -sScale model.txt input_image.jpg
+
+To calibrate the model for different scales of the input image and use the optimal scale for classification, use the following command:
+
+imgclprob.pl -c model.txt input_image.jpg
+
+To specify the stride of image tile placement, use the following command:
+
+imgclprob.pl model.txt input_image.jpg 0.75
+
+To specify the name of the output image file, use the following command:
+
+imgclprob.pl model.txt input_image.jpg 0.75 output_image.jpg
+
+To specify the probability threshold required for a tile, use the following command:
+
+imgclprob.pl model.txt input_image.jpg 0.75 output_image.jpg 0.8
+
+INSTALLATION
+
+This script requires Perl version 5.8 or later. The required libraries include Digest::SHA1 and Cwd, which can be installed from CPAN by running the following commands:
+
+cpan install Digest::SHA1
+cpan install Cwd
+
+This script should be saved with the file name imgclprob.pl and must be executable ('chmod +x imgclprob.pl').
+
+REQUIRED LIBRARY
+
+This script requires the Perl module 'Digest::SHA1'. This module is used for generating SHA-1 checksums of files.
+
+SEE ALSO
+
+imgprob.pl (1) - A script that provides a high-level command line interface for generating probability-based annotations on images.
+
+imgclassify.pl (1) - A script that performs image classification using a given model, generating a probability distribution over image tiles.
+

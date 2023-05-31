@@ -1,0 +1,51 @@
+IMGCFSTAT.PL(1) - Command line tool for image classification statistics
+
+## NAME
+
+imgcfstat.pl -- Command line tool for image classification statistics
+
+## SYNOPSIS
+
+imgcfstat.pl [-m] [-sScale] model image_orig image_gndt image_annot [split_tile_stride] [image_bbox_thresh] [ndiv|10]
+
+## DESCRIPTION
+
+`imgcfstat.pl` is a command line tool for generating classification statistics for images. The tool generates predicted class probability scores and applies thresholding. The final results include per-class statistics (Confusion Matrix, F1 score, Jaccard index, etc.) as well as global statistics using different thresholding strategies. 
+
+The input includes a model trained for image classification and three input images: `image_orig`, the image to be classified; `image_groundt`, the ground truth image; `image_annot`, the annotated image; `split_tile_stride`, the stride fraction of the image splitting; `image_bbox_thresh`, the threshold for setting the bounding box to zero; `ndiv`, the number of bins to use for the confusion matrix.
+
+## OPTIONS
+
+- `-m`: Indicate that the multiscale approach will be used.
+- `-sScale`: Define the scale in the scale-predict approach.
+
+## EXAMPLES
+
+The following shows an example of the command. 
+
+```
+imgcfstat.pl [-m] [-sScale] /path/to/model /path/to/image_orig /path/to/image_gndt /path/to/image_annot [split_tile_stride] [image_bbox_trhres] [ndiv|10]
+```
+
+```
+imgcfstat.pl -m model.pth inputs/image.png labels/gt.png output/anno.png 0.25 0.01 40
+```
+
+The above example runs the command using the multiscale approach with `model.pth` model, input image `/inputs/image.png`, ground truth `/labels/gt.png`, annotated image `/output/anno.png`, a `split_tile_stride` of 0.25, `image_bbox_thrhes` of 0.01, `ndiv` of 40. 
+
+## INSTALLATION
+
+The script can be downloaded to any Linux or Mac OS system and run. 
+
+## REQUIRED LIBRARY
+
+The following libraries are required:
+
+- `Common`
+- `TSV`
+
+## SEE ALSO
+
+Common
+TSV
+

@@ -1,0 +1,76 @@
+NAME
+	tfimgclf.py - A tool to train and predict images using TensorFlow
+
+SYNOPSIS
+	tfimgclf.py  [options] train filename.model img_data_dir
+	tfimgclf.py  [options] predict filename.model image_file image_file ...
+
+DESCRIPTION
+	tfimgclf.py is a command-line tool that allows you to train or predict images using TensorFlow.
+
+	The architecture of the Model could be specified using the -a option and the labels of the model can be stored using the -c option. The available choices of architectures are mobilenet_v2 and inception_v3.
+
+	To train and evaluate a model, the 'train' command should be used with the filename for the trained model and img_data_dir should be the path to the directory containing the training data.
+
+	To load a trained model and predict a new image(s), the 'predict' command should be used with the filename for the trained model and image_file(s) should the path(s)/filename(s) to new images to predict.
+
+OPTIONS
+	-l, --hidden-layers
+		Hidden layer structure 3,4,6, ... before the final softmax layer.
+
+	-a, --arch
+		Model architecture. The available architectures are mobilenet_v2 and inception_v3.
+	
+	-c, --class-labels-file
+		Export the labels corresponding to the trained model.
+	
+	-s, --validation-split
+		Keep fraction of training data for validation during training.
+	
+	-r, --learning-rate
+		Learning rate of Adam optimizer.
+	
+	-b, --batch-size
+		Batch size of N used during training.
+	
+	-e, --epochs
+		Training the network with N epochs.
+	
+	-p, --patience
+		Early stopping after N epochs.
+	
+	-t, --trainable
+		The network is trainable.
+		
+	-A, --augmentation
+		Augmentation options: Flip, Zoom, Translate, Rotate, Contrast.
+	
+	-q, --quiet
+		Do not display any output to stdout.
+
+EXAMPLES
+	To train the network with the filename 'model' using the data in '/path/to/image/data' with specified validation percentage and batch size, run:
+
+		tfimgclf.py train -a inception_v3 -l 128,32,8 -c model.labels -b 32 -s 0.1 --validation_split 0.2 -r 0.001 -e 20 -p 5 model /path/to/image/data
+
+	To predict a set of images, run:
+
+		tfimgclf.py predict model /path/to/image1 /path/to/image2 /path/to/image3
+
+	To predict a set of images with an index file:
+
+		tfimgclf.py predict model index:/path/to/images.txt
+
+INSTALLATION
+	The tool can only be used in a Unix/Linux environment.
+
+REQUIRED LIBRARIES
+	This tool requires TensorFlow and TensorFlow Hub, numpy, pandas and argparse libraries
+
+SEE ALSO
+	TensorFlow documentation: https://www.tensorflow.org/tutorials/
+	TensorFlow Hub documentation: https://www.tensorflow.org/hub/
+	Numpy documentation: https://numpy.org/doc/
+	Pandas documentation: https://pandas.pydata.org/docs/
+	Argparse documentation: https://docs.python.org/3/library/argparse.html
+

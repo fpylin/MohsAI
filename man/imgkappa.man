@@ -1,0 +1,54 @@
+.TH "imgkappa.py" "1" "May 2023" "User's Manual for imgkappa.py"
+
+.SH "NAME"
+imgkappa.py - A command line tool to calculate Fleiss Kappa score for two or more annotated images compared to a source image.
+
+.SH "SYNOPSIS"
+imgkappa.py SrcImage annotated_image_1 annotated_image_2 [annotated_image_3] ...
+
+.SH "DESCRIPTION"
+The imgkappa.py tool calculates the Fleiss Kappa score for two or more annotated images compared to a source image. It requires OpenCV, NumPy, PIL, and statsmodels libraries to be installed. 
+
+The tool processes the input images and calculates a saliency map of the areas of difference between the source image and the annotated images. The areas of difference are then scaled and flattened to a one-dimensional array and fed into the Fleiss Kappa algorithm to calculate the inter-rater agreement score.
+
+.SH "OPTIONS"
+There are no options for the imgkappa.py tool.
+
+.SH "EXAMPLES"
+To calculate the Fleiss Kappa score for two annotated images, run:
+.PP
+
+imgkappa.py source_image.png annotated_image_1.png annotated_image_2.png
+
+.PP
+To calculate the Fleiss Kappa score for three annotated images, run:
+.PP
+
+imgkappa.py source_image.png annotated_image_1.png annotated_image_2.png annotated_image_3.png
+
+.SH "INSTALLATION"
+To use the imgkappa.py tool, you need to have Python 3.x installed on your system, along with the OpenCV, NumPy, PIL, and statsmodels libraries. These libraries can be installed using pip. For example:
+
+.PP
+
+pip install opencv-python numpy pillow statsmodels
+
+.SH "REQUIRED LIBRARY"
+The following libraries are required for the imgkappa.py tool:
+.PP
+.BR
+OpenCV
+.BR
+NumPy
+.BR
+PIL
+.BR
+statsmodels
+
+.SH "SEE ALSO"
+The following resources may be helpful:
+
+OpenCV documentation: https://docs.opencv.org/
+NumPy documentation: https://numpy.org/doc/
+PIL documentation: https://pillow.readthedocs.io/en/stable/
+statsmodels documentation: https://www.statsmodels.org/stable/index.html

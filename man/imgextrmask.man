@@ -1,0 +1,58 @@
+.TH imgextramask.py 1 "April 2021" "Version 1.0" "User Manual for imgextramask.py Python script"
+
+.SH NAME
+imgextramask.py - extracts the ground truth mask from a labelled ground truth image and calculates two-class statistics of a predicted mask.
+
+.SH SYNOPSIS
+imgextramask.py [SourceImage] [SourceImageLabelledGroundTruth] [PredictedMask]
+
+.SH DESCRIPTION
+imgextramask.py is a Python script that extracts the ground truth mask from a labelled ground truth image and calculates two-class statistics of a predicted mask. 
+
+The predicted mask is obtained by performing image subtraction, logical OR and thresholding operations on the source and ground truth images using the OpenCV library.
+
+The script prints the following two-class statistics for the predicted mask:
+- width: the width of the image in pixels
+- height: the height of the image in pixels
+- pixels: the total number of pixels in the image
+- tp: the number of true positives
+- fn: the number of false negatives
+- fp: the number of false positives
+- tn: the number of true negatives
+- sens: the sensitivity
+- spec: the specificity
+- ppv: the positive predictive value
+- npv: the negative predictive value
+- f1: the F1 score
+- jaccard: the Jaccard similarity coefficient
+- acc: the accuracy
+
+.SH OPTIONS
+The script does not accept any options.
+
+.SH EXAMPLES
+Extract the ground truth mask from a labelled ground truth image and calculate two-class statistics of a predicted mask:
+.B imgextramask.py source_image.jpg gt_image.jpg predicted_mask.jpg
+
+.SH INSTALLATION
+imgextramask.py requires Python3 and the OpenCV library to be installed.
+
+1. Install Python3:
+sudo apt-get update
+sudo apt-get install python3
+
+2. Install pip:
+sudo apt-get install python3-pip
+
+3. Install OpenCV:
+pip install opencv-python
+
+4. Make imgextramask.py executable:
+chmod +x imgextramask.py
+
+.SH REQUIRED LIBRARY
+imgextramask.py requires the OpenCV library to be installed.
+
+.SH SEE ALSO
+opencv(7), cv2.imread(3), cv2.split(3), cv2.subtract(3), cv2.threshold(3), cv2.bitwise_or(3), cv2.bitwise_and(3), cv2.bitwise_not(3), cv2.countNonZero(3)
+

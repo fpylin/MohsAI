@@ -1,0 +1,19 @@
+.TH imgsplit.py 1 "May 2023" "1.0" "imgsplit.py man page"
+.SH NAME
+imgsplit.py - command line tool to split an input image into tiles and save each tile as a separate image file
+.SH SYNOPSIS
+\fBimgsplit.py\fR [\fISourceImage\fR] [\fIOutdir\fR]
+.SH DESCRIPTION
+\fBimgsplit.py\fR is a Python script that splits an input image into tiles and saves each tile as a separate image file in the specified output directory. The script takes two arguments: the path to the input image file and the path to the output directory. The output files are named using the hash of the input file name and the tile coordinates.
+.SH OPTIONS
+None
+.SH EXAMPLES
+To split an image file "input.jpg" into tiles of size 224x224 and save the tiles to the directory "output", run:
+\fBimgsplit.py input.jpg output\fR
+.SH INSTALLATION
+Copy the Python script to a directory on your system. The script requires Python 3 and the following Python modules: math, time, sys, cv2, os, and hashlib.
+.SH REQUIRED LIBRARY
+The script requires the following Python modules to be installed:
+math, time, sys, cv2, os, and hashlib.
+.SH SEE ALSO
+cv2.imwrite(3), os.mkdir(3), hashlib.sha1(3)

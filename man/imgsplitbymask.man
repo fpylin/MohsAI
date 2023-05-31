@@ -1,0 +1,45 @@
+.TH imgsplitbymask.py 1 "May 2021" "Version 1.0" "User Manual for imgsplitbymask.py"
+
+.SH NAME
+imgsplitbymask.py - splits an annotated image into areas that meet certain quality criteria. 
+
+.SH SYNOPSIS
+/usr/bin/python3 imgsplitbymask.py SourceImage SourceImageLabelledGroundTruth Outdir [Crit|0.95]
+
+.SH DESCRIPTION
+imgsplitbymask.py is a command line tool that is run by Python on a UNIX system to split an annotated image into areas that meet specified quality criteria. The program is launched in File Explorer and takes in arguments for the source image file, a labelled ground truth image for the source image, and the output directory where the split images will be stored. An optional argument can be passed to specify the quality criteria threshold for filtering the images. The output is printed in the console and shows the class, probability of the image meeting the criteria, and the output file name for each split image produced.
+
+.SH OPTIONS
+SourceImage 
+The path and name of the source image to be split into separate images that meet specified quality criteria.
+
+SourceImageLabelledGroundTruth 
+The path and name of the image file that provides labelled ground truth for the SourceImage for image segmentation. 
+
+Outdir
+The path for the output directory where the split images produced will be stored.
+
+optional Crit|0.95 threshold for image quality
+If this argument is passed, it will specify the quality criteria threshold for filtering the images. 
+
+.SH EXAMPLES
+Example of how to use imgsplitbymask.py:
+/usr/bin/python3 imgsplitbymask.py ./source_image.png ./labelled_ground_truth.png ./output_dir 0.98
+
+Given the source image source_image.png and labelled ground truth image labelled_ground_truth.png, the program divides the source image into smaller images that meet or do not meet a threshold quality criteria of 0.98. The split images are stored in the output directory output_dir.
+
+.SH INSTALLATION
+imgsplitbymask.py does not require installation. The tool can be run directly by launching the script in File Explorer on a UNIX system.
+
+.SH REQUIRED LIBRARY
+The following libraries are required to run imgsplitbymask.py:
+- os
+- math
+- time
+- sys
+- cv2
+- hashlib
+
+.SH SEE ALSO
+- python(1)
+

@@ -1,0 +1,74 @@
+.TH imgprob.pl 1 "15 May 2023" "1.0" "imgprob.pl man page"
+.SH NAME
+imgprob.pl \- command line tool to plot image probability over an image and generate binary mask files.
+.SH SYNOPSIS
+.B imgprob.pl
+.I image_file
+.I score_file
+.I output_filename
+.I prob_crit
+.I prob_max
+.I mask_fn
+.I bbox_fn
+.SH DESCRIPTION
+The \fBimgprob.pl\fR script reads a text file of image tiles with predictions for the presence of a particular object in a sample. It will plot the probabilities over the image boundaries and generate binary mask files. Major dependencies on perl, ImageMagick, and Color::RGB::Util modules should be checked first.
+.SH OPTIONS
+.TP
+.B image_file
+The JPEG or PNG formatted image file to analyze. Required argument.
+.TP
+.B score_file
+The path to a TSV-formatted file with the results of a prediction. Required argument.
+.TP
+.B output_filename
+Optional argument. The desired output file name path for the image with the plotted probability overlay.
+.TP
+.B prob_crit
+Optional argument. The minimum probability required for a tile to be considered significantly related to an object. Default value is 0.5.
+.TP
+.B prob_positive
+Optional argument. The maximum probability allowable for a tile to be related to a non-object local environment. Default value is 1.
+.TP
+.B mask_fn
+Optional argument. The file name for a binary mask containing explicit boundary lines between objects and non-objects (0's and 1's). Can be an alpha channel.
+.TP
+.B bbox_fn
+Optional argument. The file name for a collection of bounding boxes for which a computed probability has been plotted.
+.SH EXAMPLES
+.PP
+Example usage to get help:
+.B imgprob.pl
+.PP
+Example usage command line with minimum options:
+.B imgprob.pl ExampleImage.jpg predictionsFile.tsv /tmp/sample.jpg
+.PP
+Example command line usage with default arguments:
+.B imgprob.pl ExampleImage.jpg predictionsFile.tsv /tmp/sample.jpg 0.500 1.000 mask.png boundingBox.tsv
+.SH INSTALLATION
+Use the following command to clone the repository:
+.B git clone https://github.com/iamfrank/ImageProb.git
+.SH REQUIRED LIBRARY
+.TP
+.B Cwd
+.TP
+.B Common
+.TP
+.B Color::RGB::Util
+.TP
+.B Image::Magick
+.TP
+.B POSIX
+.TP
+.B strict
+.TP
+.B warnings
+.SH SEE ALSO
+.TP
+.B The ImageMagick website
+https://imagemagick.org/
+.TP
+.B Color::RGB::Util
+https://metacpan.org/pod/Color::RGB::Util
+.TP
+.B A comprehensive guide to writing Linux man pages
+https://www.tldp.org/HOWTO/Man-Page/

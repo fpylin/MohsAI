@@ -1,0 +1,59 @@
+NAME
+imgclassify.pl - a command line tool for training and predicting image classification models.
+
+SYNOPSIS
+imgclassify.pl [train|predict|predict_text]+? classifier.model files ...
+
+DESCRIPTION
+imgclassify.pl is a command line tool for training and predicting image classification models. It provides multiple sub-commands, including "train", "retrain", "predict", "cvtest", "add-posex", "add-negex", and "add-examples". 
+
+OPTIONS
+--split-tiles: Split images into sub-images for training and classification.
+--no-split-tiles: Do not split images into sub-images for training and classification.
+--split-tiles-stride: Set the stride (in pixels) of the sliding window for splitting images. Default is 32 pixels.
+--split-tiles-dim: Set the size (in pixels) of the sub-images obtained by sliding the window. Default is 128 pixels.
+--dewhite-model: Specify a dewhitening model for pre-processing images.
+--augscales: Set the range of scales for data augmentation. Default is "1.0,1.1,1.2".
+--epochs: Set the number of epochs for training. Default is 1.
+--patience: Set the number of epochs of training without any improvement before early stopping is triggered. Default is 2.
+--arch: Set the architecture of the model. Default is "vgg16".
+--hidden-layers: Set the number and size of the fully connected hidden layers. Default is "256,256".
+--batch-size: Set the batch size for training. Default is 16.
+--trainable: Allow fine-tuning of pre-trained model weights during training.
+--not-trainable: Do not allow fine-tuning of pre-trained model weights during training.
+
+EXAMPLES
+Train a model:
+imgclassify.pl train model.clf /path/to/posex/ /path/to/negex/
+
+Predict the class of an image:
+imgclassify.pl predict model.clf /path/to/image.jpg
+
+Retrain a model with new examples:
+imgclassify.pl retrain model.clf /path/to/new_cases.txt
+
+Perform k-fold cross-validation:
+imgclassify.pl cvtest 5 model.clf /path/to/cases/
+
+Add positive examples to a model:
+imgclassify.pl add-posex model.clf /path/to/posex/
+
+Add negative examples to a model:
+imgclassify.pl add-negex model.clf /path/to/negex/
+
+Add examples to a model:
+imgclassify.pl add-examples model.clf /path/to/casefile.txt
+
+INSTALLATION
+imgclassify.pl requires Perl and the following Perl modules:
+- Getopt::Long
+- Common
+- ImageClassifier
+
+REQUIRED LIBRARY
+Common
+ImageClassifier
+
+SEE ALSO
+Common(3), ImageClassifier(3)
+
