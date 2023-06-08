@@ -1,0 +1,11 @@
+# Path to WEKA (if WEKA is to be used)
+WEKA_PATH = /usr/local/weka
+JAVA_PATH = /usr/bin/java
+
+# Enabling GPU Python environment for set up for tensorflow
+# CL-TFImage.tf_gpu.activate   =  source /etc/profile.d/conda.sh; conda activate tf_gpu
+# CL-TFImage.tf_gpu.deactivate =  conda deactivate
+
+# Default environment
+CL-TFImage.tf_gpu.activate   =  true
+CL-TFImage.tf_gpu.deactivate =  true
